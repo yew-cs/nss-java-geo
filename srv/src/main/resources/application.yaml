@@ -1,0 +1,47 @@
+---
+spring:
+  web.resources.static-locations: "file:./app"
+
+---
+spring:
+  config.activate.on-profile: default
+  datasource:
+    url: "jdbc:sqlite:file::memory:?cache=shared"
+    driver-class-name: org.sqlite.JDBC
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 1
+cds:
+  security:
+    xsuaa:
+      enabled: false
+
+---
+spring:
+  config.activate.on-profile: test
+cds:
+  security:
+    xsuaa:
+      enabled: false
+    mock:
+      users:
+        - name: lewin
+          password: 1234
+          tenant: SomeTenant
+          roles:
+            - Viewer
+          attributes:
+            clientId: [12953d4c-39a1-4b0e-994c-3cf2f6a78e29]
+          additional:
+            email: lewin.gan@rizing.com
+
+        - name: Privileged-User
+          password: privileged-pass
+          privileged: true
+
+        - name: System
+          password: system-pass
+          system-user: true
+          tenant: SomeTenant
+          roles:
+            - mtcallback

@@ -1,0 +1,80 @@
+#@protocol = http
+@protocol = https
+#@host = localhost:8080
+@host = bncsbx-sbx-network-spatial-services-srv.cfapps.sap.hana.ondemand.com
+@token = access_token
+
+
+###Get GeoLocations
+GET {{protocol}}://{{host}}/odata/v4/nss/GeoLocations?
+
+###Get Config
+GET {{protocol}}://{{host}}/odata/v4/geoconfig/getConfig()
+
+
+###Get GeoService Metadata
+GET {{protocol}}://{{host}}/odata/v4/geoservice/$metadata
+
+###Get Geometries
+GET {{protocol}}://{{host}}/odata/v4/geoservice/Geometries
+
+###Delete Geometry
+DELETE {{protocol}}://{{host}}/odata/v4/geoservice/Geometries(ID=185b89eb-cc68-4516-b226-8f690e7aaf17,validFrom=2021-04-15T04:28:14.926Z)
+
+###Get View BusinessGeometries
+GET {{protocol}}://{{host}}/odata/v4/geoservice/BusinessGeometries
+
+
+###Get BO
+GET {{protocol}}://{{host}}/odata/v4/geoservice/BusinessObjects
+
+
+###Get BO Expand
+GET {{protocol}}://{{host}}/odata/v4/geoservice/BusinessObjects?$expand=geometries
+
+###Delete BO
+DELETE {{protocol}}://{{host}}/odata/v4/geoservice/BusinessObjects(ID=72578c46-196b-4fce-b2c6-da801fda8d72)
+
+
+### Post BO w/o geometry
+POST {{protocol}}://{{host}}/odata/v4/geoservice/BusinessObjects HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "boType": "WorkOrder",
+  "appReferenceObjectId": "SomeWorkOrderID4"
+}
+
+### Post BO with Geometry
+POST {{protocol}}://{{host}}/odata/v4/geoservice/BusinessObjects HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "boType": "WorkOrder",
+  "appReferenceObjectId": "SomeWorkOrderID5",
+  "geometries": [
+    {
+      "boGeometry": "POINT (-122.284128 47.569642)",
+      "boContext": "Work Center"
+    },
+    {
+      "boGeometry": "POINT (-100.284128 47.569642)",
+      "boContext": "Random POI"
+    }
+  ]
+}
+
+### Post Geometries
+POST {{protocol}}://{{host}}/odata/v4/geoservice/Geometries HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "boReference_ID": "83341bd4-9ca1-4b05-92ea-22485097a707",
+  "boContext": "Work Center",
+  "boGeometry": "POINT (-123.284128 47.569642)"
+}
+
+

@@ -1,0 +1,7 @@
+---
+applications:
+- name: network-spatial-services-srv
+  path: target/network-spatial-services-exec.jar
+  random-route: false
+  services:
+  - network-spatial-services-db

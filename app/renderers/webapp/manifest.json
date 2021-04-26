@@ -1,0 +1,104 @@
+{
+    "_version": "",
+    "sap.app": {
+        "id": "com.sap.nss.nsaa.renderers",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/geoconfig/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject"
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [{
+                    "pattern": ":?query:",
+                    "name": "RenderersList",
+                    "target": "RenderersList"
+                },
+                {
+                    "pattern": "Renderers({key}):?query:",
+                    "name": "RenderersObjectPage",
+                    "target": "RenderersObjectPage"
+                }
+            ],
+            "targets": {
+                "RenderersList": {
+                    "type": "Component",
+                    "id": "RenderersList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Renderers",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Renderers": {
+                                    "detail": {
+                                        "route": "RenderersObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "RenderersObjectPage": {
+                    "type": "Component",
+                    "id": "RenderersObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Renderers"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

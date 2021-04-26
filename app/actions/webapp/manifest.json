@@ -1,0 +1,101 @@
+{
+    "_version": "",
+    "sap.app": {
+        "id": "com.sap.nss.nsaa.actions",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/geoconfig/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "-id": "ui5template.smartTemplate",
+            "-version": "1.40.12"
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [{
+                    "pattern": ":?query:",
+                    "name": "ActionsList",
+                    "target": "ActionsList"
+                },
+                {
+                    "pattern": "Actions({key}):?query:",
+                    "name": "ActionsObjectPage",
+                    "target": "ActionsObjectPage"
+                }
+            ],
+            "targets": {
+                "ActionsList": {
+                    "type": "Component",
+                    "id": "ActionsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Actions",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Actions": {
+                                    "detail": {
+                                        "route": "ActionsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ActionsObjectPage": {
+                    "type": "Component",
+                    "id": "ActionsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Actions"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5"
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

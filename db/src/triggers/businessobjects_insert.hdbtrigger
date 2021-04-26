@@ -1,0 +1,24 @@
+TRIGGER "NSS_BUSINESSOBJECTS_TRIG_INSERT"
+AFTER
+INSERT ON "NSS_BUSINESSOBJECTS" REFERENCING NEW ROW newrow FOR EACH ROW BEGIN
+INSERT INTO "NSS_LOGS_BUSINESSOBJECTS" (
+		logCounter,
+		logTime,
+		logUser,
+		ID,
+		ownerClient_Id_new,
+		appReferenceObjectId_new,
+		boType_new,
+		isMarkedForDeletion_new
+	)
+VALUES (
+		"NSS_LOGS_BUSINESSOBJECTS_SEQUENCE".NEXTVAL,
+		now(),
+		:newrow.CREATEDBY,
+		:newrow.ID,
+		:newrow.OWNERCLIENT_ID,
+		:newrow.APPREFERENCEOBJECTID,
+		:newrow.BOTYPE,
+		:newrow.ISMARKEDFORDELETION
+	);
+END

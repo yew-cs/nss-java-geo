@@ -1,0 +1,29 @@
+TRIGGER "NSS_CLIENTS_TRIG_UPDATE"
+AFTER
+UPDATE ON "NSS_CLIENTS" REFERENCING NEW ROW newrow,
+	OLD ROW oldrow FOR EACH ROW BEGIN
+INSERT INTO "NSS_LOGS_CLIENTS" (
+		logCounter,
+		logTime,
+		logUser,
+		ID,
+		name_old,
+		name_new,
+		description_old,
+		description_new,
+		isMarkedForDeletion_old,
+		isMarkedForDeletion_new
+	)
+VALUES (
+		"NSS_LOGS_CLIENTS_SEQUENCE".NEXTVAL,
+		now(),
+		:newrow.MODIFIEDBY,
+		:newrow.ID,
+		:oldrow.NAME,
+		:newrow.NAME,
+		:oldrow.DESCRIPTION,
+		:newrow.DESCRIPTION,
+		:oldrow.ISMARKEDFORDELETION,
+		:newrow.ISMARKEDFORDELETION
+	);
+END

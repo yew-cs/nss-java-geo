@@ -1,0 +1,22 @@
+TRIGGER "NSS_CLIENTS_TRIG_INSERT"
+AFTER
+INSERT ON "NSS_CLIENTS" REFERENCING NEW ROW newrow FOR EACH ROW BEGIN
+INSERT INTO "NSS_LOGS_CLIENTS" (
+		logCounter,
+		logTime,
+		logUser,
+		ID,
+		name_new,
+		description_new,
+		isMarkedForDeletion_new
+	)
+VALUES (
+		"NSS_LOGS_CLIENTS_SEQUENCE".NEXTVAL,
+		now(),
+		:newrow.CREATEDBY,
+		:newrow.ID,
+		:newrow.NAME,
+		:newrow.DESCRIPTION,
+		:newrow.ISMARKEDFORDELETION
+	);
+END

@@ -1,0 +1,66 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - develop
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "10.x"
+    displayName: "Install Node.js"
+
+  - script: |
+      npm install
+    displayName: "Execute Install"
+
+  - task: Npm@1
+    displayName: "Execute Code Checks"
+    inputs:
+      command: "custom"
+      customCommand: "run lint-azure"
+
+  - task: PublishPipelineArtifact@1
+    condition: failed()
+    inputs:
+      targetPath: "$(Pipeline.Workspace)/s/report/lint-results.html"
+      artifact: "lint-results.html"
+      publishLocation: "pipeline"
+
+  - script: |
+      npm run build
+    displayName: "Execute Build"
+
+  - task: CloudFoundryCLIInstall@0
+    inputs:
+      cfVersion: '6.43.0'
+    displayName: "Install Cloud Foundry"
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/develop'))
+
+  - script: |
+      cf login -a https://api.cf.sap.hana.ondemand.com/ -u $USERNAME -p $PASSWORD -o BNCSBX -s sbx
+      npx -p @sap/cds-dk cds deploy --to hana
+    displayName: "Deploy to HANA HDI Container"
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    env:
+      USERNAME: $(username)
+      PASSWORD: $(password)
+
+  - task: CopyFiles@2
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    inputs:
+      SourceFolder: "$(agent.builddirectory)/s/mta_archives"
+      Contents: "*"
+      TargetFolder: "$(build.artifactstagingdirectory)"
+
+  - task: PublishBuildArtifacts@1
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "drop"
+      publishLocation: "Container"

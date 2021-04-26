@@ -1,0 +1,33 @@
+TRIGGER "NSS_BUSINESSOBJECTS_TRIG_UPDATE"
+AFTER
+UPDATE ON "NSS_BUSINESSOBJECTS" REFERENCING NEW ROW newrow,
+	OLD ROW oldrow FOR EACH ROW BEGIN
+INSERT INTO "NSS_LOGS_BUSINESSOBJECTS" (
+		logCounter,
+		logTime,
+		logUser,
+		ID,
+		ownerClient_Id_old,
+		ownerClient_Id_new,
+		appReferenceObjectId_old,
+		appReferenceObjectId_new,
+		boType_old,
+		boType_new,
+		isMarkedForDeletion_old,
+		isMarkedForDeletion_new
+	)
+VALUES (
+		"NSS_LOGS_BUSINESSOBJECTS_SEQUENCE".NEXTVAL,
+		now(),
+		:newrow.MODIFIEDBY,
+		:newrow.ID,
+		:oldrow.OWNERCLIENT_ID,
+		:newrow.OWNERCLIENT_ID,
+		:oldrow.APPREFERENCEOBJECTID,
+		:newrow.APPREFERENCEOBJECTID,
+		:oldrow.BOTYPE,
+		:newrow.BOTYPE,
+		:oldrow.ISMARKEDFORDELETION,
+		:newrow.ISMARKEDFORDELETION
+	);
+END

@@ -1,0 +1,132 @@
+_schema-version: "3.1"
+ID: com.sap.bnc.nss.core
+description: Network Spatial Service Core
+version: 0.0.1
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+modules:
+  - name: nss-map-control
+    type: nodejs
+    path: map
+    parameters:
+      memory: 512M
+      disk-quota: 512M
+    provides:
+      - name: map-control-api
+        public: false
+        properties:
+          url: ${default-url}
+  - name: network-spatial-services-srv
+    type: java
+    path: srv
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud
+    requires:
+      - name: network-spatial-services-db
+      - name: nss-uaa
+    provides:
+      - name: srv
+        properties:
+          url: ${default-url}
+    build-parameters:
+      build-result: target/*-exec.[wj]ar
+      builder: custom
+      commands:
+        - mvn clean package
+  # - name: nss-hdi-deployer
+  #   type: hdb
+  #   path: db
+  #   requires:
+  #     - name: network-spatial-services-db
+  #       properties:
+  #         TARGET_CONTAINER: ~{hdi-service-name}
+  #     - name: cross-container-service-1
+  #       group: SERVICE_REPLACEMENTS
+  #       properties:
+  #         key: ServiceName_1
+  #         service: ~{the-service-name}
+  #   parameters:
+  #     buildpack: nodejs_buildpack
+# --------------------- APPROUTER MODULE ---------------------
+  - name: nss-approuter
+# ------------------------------------------------------------
+    type: nodejs
+    path: app
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    requires:
+    - name: srv
+      group: destinations
+      properties:
+        name: backend
+        url: ~{url}
+        forwardAuthToken: true
+        strictSSL: true
+    - name: nss-uaa
+    provides:
+      - name: app
+        properties:
+          url: '${default-url}'
+  - name: nss-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: nss-destination-service
+        parameters:
+          content-target: true
+      - name: nss-html5-app-host
+      - name: nss-uaa
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: nss-html5-app-host
+              ServiceInstanceName: nss-html5-app-host
+              ServiceKeyName: nss-html5-app-host-key
+              sap.cloud.service: nss
+            - Authentication: OAuth2UserTokenExchange
+              Name: nss-uaa
+              ServiceInstanceName: nss-uaa
+              ServiceKeyName: nss-uaa-key
+              sap.cloud.service: nss
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+resources:
+  - name: network-spatial-services-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      config:
+        database_id: 6867e4a3-615f-4fa9-b0ce-1d3f5aae5225
+    properties:
+      hdi-service-name: ${service-name}
+  - name: nss-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+      service: destination
+      service-plan: lite
+  - name: nss-html5-app-host
+    type: org.cloudfoundry.existing-service
+  - name: nss-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+  - name: cross-container-service-1
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: network-spatial-services-db
+    properties:
+      the-service-name: ${service-name}

@@ -1,0 +1,28 @@
+TRIGGER "NSS_GEOMETRIES_TRIG_INSERT_AFTER"
+AFTER
+INSERT ON "NSS_GEOMETRIES" REFERENCING NEW ROW newrow FOR EACH ROW BEGIN
+INSERT INTO "NSS_LOGS_GEOMETRIES" (
+		logCounter,
+		logTime,
+		logUser,
+		ID,
+		validFrom,
+		validTo_new,
+		boGeometry_new,
+		boReference_ID_new,
+		boContext_new,
+		isMarkedForDeletion_new
+	)
+VALUES (
+		"NSS_LOGS_GEOMETRIES_SEQUENCE".NEXTVAL,
+		now(),
+		:newrow.CREATEDBY,
+		:newrow.ID,
+		:newrow.VALIDFROM,
+		:newrow.VALIDTO,
+		:newrow.BOGEOMETRY,
+		:newrow.BOREFERENCE_ID,
+		:newrow.BOCONTEXT,
+		:newrow.ISMARKEDFORDELETION
+	);
+END
