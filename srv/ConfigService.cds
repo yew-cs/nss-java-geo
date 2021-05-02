@@ -2,7 +2,7 @@ using {nsaa as our} from '../db/config';
 
 service configService @(path : '/geoconfig') {
     @odata.draft.enabled
-    entity Actions                      as projection on our.Actions excluding {
+    entity Actions             as projection on our.Actions excluding {
         createdAt,
         createdBy,
         modifiedAt,
@@ -10,7 +10,7 @@ service configService @(path : '/geoconfig') {
     };
 
     @odata.draft.enabled
-    entity BusinessObjectTypes          as projection on our.BusinessObjectTypes excluding {
+    entity BusinessObjectTypes as projection on our.BusinessObjectTypes excluding {
         createdAt,
         createdBy,
         modifiedAt,
@@ -18,7 +18,7 @@ service configService @(path : '/geoconfig') {
     };
 
     @odata.draft.enabled
-    entity Layers                       as projection on our.Layers excluding {
+    entity Layers              as projection on our.Layers excluding {
         createdAt,
         createdBy,
         modifiedAt,
@@ -26,47 +26,35 @@ service configService @(path : '/geoconfig') {
     };
 
     @odata.draft.enabled
-    entity Renderers                    as projection on our.Renderers excluding {
+    entity Renderers           as projection on our.Renderers excluding {
         createdAt,
         createdBy,
         modifiedAt,
         modifiedBy
     };
 
-    entity Scenarios                    as projection on our.Scenarios excluding {
+    entity Scenarios           as projection on our.Scenarios excluding {
         createdAt,
         createdBy,
         modifiedAt,
         modifiedBy
     };
 
-    entity Actions_in_Scenarios         as projection on our.ActionsInScenarios excluding {
+    entity Applications        as projection on our.Application excluding {
         createdAt,
         createdBy,
         modifiedAt,
         modifiedBy
     };
 
-    entity BusinessObjects_in_Scenarios as projection on our.BusinessObjectsInScenarios excluding {
-        createdAt,
-        createdBy,
-        modifiedAt,
-        modifiedBy
-    };
-
-    entity Layers_in_Scenarios          as projection on our.LayersInScenarios excluding {
-        createdAt,
-        createdBy,
-        modifiedAt,
-        modifiedBy
-    };
-
-    entity LayerType                    as projection on our.LayerTypes;
-    entity ServiceType                  as projection on our.ServiceTypes;
-    entity ActionType                   as projection on our.ActionTypes;
+    entity LayerType           as projection on our.LayerTypes;
+    entity ServiceType         as projection on our.ServiceTypes;
+    entity ActionType          as projection on our.ActionTypes;
 
     @cds.redirection.target : false
-    entity BusinessObjectType           as projection on our.BusinessObjectTypes excluding {
+    // TODO: Association to the original BO draft enabled entity somehow not working, 
+    // therefore projecting this same entity for use in the Actions type associations
+    entity BusinessObjectType  as projection on our.BusinessObjectTypes excluding {
         createdAt,
         createdBy,
         modifiedAt,

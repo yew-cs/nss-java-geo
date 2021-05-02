@@ -21,18 +21,18 @@ entity Renderers : cuid, managed {
     CloudFoundryDestination : String;
     Url                     : String;
     @assert.range : [
-    -180,
-    180
+        -180,
+        180
     ]
     DefaultCenterLatitude   : Double;
     @assert.range : [
-    -180,
-    180
+        -180,
+        180
     ]
     DefaultCenterLongitude  : Double;
     @assert.range : [
-    0,
-    100
+        0,
+        100
     ]
     DefaultZoomLevel        : Integer;
     DefaultStyle            : String;
@@ -46,19 +46,16 @@ entity Renderers : cuid, managed {
  */
 entity Layers : cuid, managed {
     ClientId                 : ClientIdType;
-    @mandatory
-    Name                     : localized String;
+    @mandatory Name          : localized String;
     Description              : localized String;
-    @mandatory
-    ServiceType              : Association to one ServiceTypes;
+    @mandatory ServiceType   : Association to one ServiceTypes;
     ServiceUrl               : String;
     OdataFieldNameGeometry   : String default 'boGeometry';
     OdataFieldNameProperties : String default 'metaData';
-    @mandatory
-    LayerType                : Association to one LayerTypes;
+    @mandatory LayerType     : Association to one LayerTypes;
     @assert.range : [
-    0,
-    100
+        0,
+        100
     ] MinZoom                : Integer default 100;
     LayoutJson               : LargeString;
     PaintJson                : LargeString;
@@ -89,17 +86,15 @@ entity ServiceTypes : ServiceTypeCodeList {}
  * Action, these can be 'Create Work Order' or 'Track Shipment'
  */
 entity Actions : cuid, managed {
-    ClientId           : ClientIdType; //Probably redundant
-    @mandatory
-    Name               : localized String; //name of the action item eg Create Work Oder
-    Description        : localized String; //description of the action item eg Creates a collaborative work order
-    @mandatory
-    ActionType         : Association to one ActionTypes; //list of currently supported action types eg semanticNavigation, urlNavigation
-    BusinessObjectType : Association to one BusinessObjectTypes;
-    SemanticObject     : String; //the SAP standard business object eg Shipment, WorkOrder, Equipment, Notification, TruckLocation
-    Action             : String; //used for semanticNavigation
-    Url                : String; //used for urlNavigation
-    Parameters         : LargeString; //Provide a JSON string of additional key values necessary for the configuration
+    ClientId              : ClientIdType; //Probably redundant
+    @mandatory Name       : localized String; //name of the action item eg Create Work Oder
+    Description           : localized String; //description of the action item eg Creates a collaborative work order
+    @mandatory ActionType : Association to one ActionTypes; //list of currently supported action types eg semanticNavigation, urlNavigation
+    BusinessObjectType    : Association to one BusinessObjectTypes;
+    SemanticObject        : String; //the SAP standard business object eg Shipment, WorkOrder, Equipment, Notification, TruckLocation
+    Action                : String; //used for semanticNavigation
+    Url                   : String; //used for urlNavigation
+    Parameters            : LargeString; //Provide a JSON string of additional key values necessary for the configuration
 };
 
 /**
@@ -115,50 +110,59 @@ entity ActionTypes : ActionsCodeList {}
  * Business Object Type: I.e. Work order
  */
 entity BusinessObjectTypes : cuid, managed {
-    ClientId    : ClientIdType;
-    @mandatory
-    Name        : localized String;
-    Description : localized String;
-    JsonConfig  : LargeString;
+    ClientId        : ClientIdType;
+    @mandatory Name : localized String;
+    Description     : localized String;
+    JsonConfig      : LargeString;
 };
 
 /**
  * Scenarios or variants
  */
 entity Scenarios : cuid, managed {
-    ClientId        : ClientIdType;
-    Name            : localized String;
-    Description     : localized String;
-    Renderer        : Association to Renderers;
-    JsonConfig      : LargeString;
-    BusinessObjects : Composition of many BusinessObjectsInScenarios
-                          on BusinessObjects.Scenario = $self;
-    Layers          : Composition of many LayersInScenarios
-                          on Layers.Scenario = $self;
-    Actions         : Composition of many ActionsInScenarios
-                          on Actions.Scenario = $self;
+    ClientId              : ClientIdType;
+    Name                  : localized String;
+    Description           : localized String;
+    ToRenderer            : Association to one Renderers;
+    ToBusinessObjectTypes : Composition of many {
+                                key BusinessObjectType : Association to BusinessObjectTypes;
+                            };
+    ToLayers              : Composition of many {
+                                key Layer : Association to Layers;
+                            };
+    ToActions             : Composition of many {
+                                key Action : Association to Actions;
+                            };
+    JsonConfig            : LargeString;
+};
+
+
+/**
+ * Applications
+ */
+// ApplicationType and ScreenName combination must be unique
+@assert.unique : {AppScreen : [
+    ApplicationType,
+    ScreenName
+]}
+entity Application : cuid, managed {
+    ClientId                   : ClientIdType;
+    Name                       : localized String;
+    Description                : localized String;
+    @mandatory ApplicationType : Association to one ApplicationTypes;
+    //Screen Name should only be alphanumeric, dash or underscore
+    @mandatory ScreenName      : String @assert.format : '^[a-zA-Z0-9-_]+$';
+    ToScenarios                : Composition of many {
+                                     key Scenario : Association to Scenarios;
+                                 };
+    JsonConfig                 : LargeString;
 };
 
 /**
- * n:m table to model Scenarios - BusinessObjects relationship
+ * Application Types e.g. AIN, LBN, Ariba etc
  */
-entity BusinessObjectsInScenarios : managed {
-    Scenario       : Association to Scenarios;
-    BusinessObject : Association to BusinessObjectTypes;
+entity ApplicationCodeList : common.CodeList {
+    key Code : String(20);
 }
 
-/**
- * n:m table to model Scenarios - Layers relationship
- */
-entity LayersInScenarios : managed {
-    Scenario : Association to Scenarios;
-    Layer    : Association to Layers;
-}
-
-/**
- * n:m table to model Scenarios - Actions relationship
- */
-entity ActionsInScenarios : managed {
-    Scenario : Association to Scenarios;
-    Action   : Association to Actions;
-}
+entity ApplicationTypes : ActionsCodeList {}
