@@ -20,7 +20,7 @@
             "authenticationType": "xsuaa"
         },
         {
-            "source": "^/ui5app/webapp/(.*)$",
+            "source": "^/mapconfiguration/webapp/(.*)$",
             "localDir": "./",
             "authenticationType": "xsuaa"
         },
