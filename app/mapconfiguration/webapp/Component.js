@@ -1,30 +1,33 @@
 sap.ui.define([
-	"sap/ui/core/UIComponent",
-	"sap/ui/Device",
-	"com/sap/nss/nsaa/mapconfiguration/model/models"
+    "sap/ui/core/UIComponent",
+    "sap/ui/Device",
+    "com/sap/nss/nsaa/mapconfiguration/model/models"
 ], function (UIComponent, Device, models) {
-	"use strict";
+    "use strict";
 
-	return UIComponent.extend("com.sap.nss.nsaa.mapconfiguration.Component", {
+    return UIComponent.extend("com.sap.nss.nsaa.mapconfiguration.Component", {
 
-		metadata: {
-			manifest: "json"
-		},
+        metadata: {
+            manifest: "json",
+            config: {
+                fullWidth: true
+            }
+        },
 
 		/**
 		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
 		 * @public
 		 * @override
 		 */
-		init: function () {
-			// call the base component's init function
-			UIComponent.prototype.init.apply(this, arguments);
+        init: function () {
+            // call the base component's init function
+            UIComponent.prototype.init.apply(this, arguments);
 
-			// enable routing
-			this.getRouter().initialize();
+            // enable routing
+            this.getRouter().initialize();
 
-			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
-		}
-	});
+            // set the device model
+            this.setModel(models.createDeviceModel(), "device");
+        }
+    });
 });
