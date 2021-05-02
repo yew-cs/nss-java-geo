@@ -16,6 +16,7 @@
     "author": "Jhodel Cailan",
     "license": "ISC",
     "dependencies": {
+        "@sap/cds-odata-v2-adapter-proxy": "^1.6.2",
         "mbt": "^1.1.1"
     },
     "devDependencies": {

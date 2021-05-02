@@ -1,7 +1,8 @@
 {
     "welcomeFile": "/app/fiori.html",
     "authenticationMethod": "route",
-    "routes": [{
+    "routes": [
+        {
             "source": "^/app/(.*)$",
             "cacheControl": "no-cache, no-store, must-revalidate",
             "target": "$1",
@@ -15,6 +16,11 @@
         },
         {
             "source": "^/actions/webapp/(.*)$",
+            "localDir": "./",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/ui5app/webapp/(.*)$",
             "localDir": "./",
             "authenticationType": "xsuaa"
         },

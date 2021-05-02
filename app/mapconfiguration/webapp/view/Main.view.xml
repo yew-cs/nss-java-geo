@@ -1,0 +1,12 @@
+<mvc:View controllerName="com.sap.nss.nsaa.mapconfiguration.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<IconTabBar id="idIconTabBarStretchContent" stretchContentHeight="true" backgroundDesign="Transparent" applyContentPadding="false"
+		expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+		<items>
+           
+			<IconTabFilter text="Actions" key="action">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.mapconfiguration.action.Action"/>
+			</IconTabFilter>
+			
+		</items>
+	</IconTabBar>
+</mvc:View>

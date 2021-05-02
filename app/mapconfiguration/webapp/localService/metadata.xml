@@ -1,0 +1,1891 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="configService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="ActionType" EntityType="configService.ActionType"/>
+                <EntitySet Name="ActionTypes_texts" EntityType="configService.ActionTypes_texts"/>
+                <EntitySet Name="Actions" EntityType="configService.Actions"/>
+                <FunctionImport Name="Actions_draftPrepare" EntitySet="Actions" ReturnType="configService.Actions" m:HttpMethod="POST" sap:action-for="configService.Actions">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Actions_draftActivate" EntitySet="Actions" ReturnType="configService.Actions" m:HttpMethod="POST" sap:action-for="configService.Actions">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Actions_draftEdit" EntitySet="Actions" ReturnType="configService.Actions" m:HttpMethod="POST" sap:action-for="configService.Actions">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="Actions_in_Scenarios" EntityType="configService.Actions_in_Scenarios"/>
+                <EntitySet Name="Actions_texts" EntityType="configService.Actions_texts"/>
+                <EntitySet Name="BusinessObjectType" EntityType="configService.BusinessObjectType"/>
+                <EntitySet Name="BusinessObjectTypes" EntityType="configService.BusinessObjectTypes"/>
+                <FunctionImport Name="BusinessObjectTypes_draftPrepare" EntitySet="BusinessObjectTypes" ReturnType="configService.BusinessObjectTypes" m:HttpMethod="POST" sap:action-for="configService.BusinessObjectTypes">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="BusinessObjectTypes_draftActivate" EntitySet="BusinessObjectTypes" ReturnType="configService.BusinessObjectTypes" m:HttpMethod="POST" sap:action-for="configService.BusinessObjectTypes">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="BusinessObjectTypes_draftEdit" EntitySet="BusinessObjectTypes" ReturnType="configService.BusinessObjectTypes" m:HttpMethod="POST" sap:action-for="configService.BusinessObjectTypes">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="BusinessObjectTypes_texts" EntityType="configService.BusinessObjectTypes_texts"/>
+                <EntitySet Name="BusinessObjects_in_Scenarios" EntityType="configService.BusinessObjects_in_Scenarios"/>
+                <EntitySet Name="DraftAdministrativeData" EntityType="configService.DraftAdministrativeData"/>
+                <EntitySet Name="LayerType" EntityType="configService.LayerType"/>
+                <EntitySet Name="LayerTypes_texts" EntityType="configService.LayerTypes_texts"/>
+                <EntitySet Name="Layers" EntityType="configService.Layers"/>
+                <FunctionImport Name="Layers_draftPrepare" EntitySet="Layers" ReturnType="configService.Layers" m:HttpMethod="POST" sap:action-for="configService.Layers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Layers_draftActivate" EntitySet="Layers" ReturnType="configService.Layers" m:HttpMethod="POST" sap:action-for="configService.Layers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Layers_draftEdit" EntitySet="Layers" ReturnType="configService.Layers" m:HttpMethod="POST" sap:action-for="configService.Layers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="Layers_in_Scenarios" EntityType="configService.Layers_in_Scenarios"/>
+                <EntitySet Name="Layers_texts" EntityType="configService.Layers_texts"/>
+                <EntitySet Name="Renderers" EntityType="configService.Renderers"/>
+                <FunctionImport Name="Renderers_draftPrepare" EntitySet="Renderers" ReturnType="configService.Renderers" m:HttpMethod="POST" sap:action-for="configService.Renderers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Renderers_draftActivate" EntitySet="Renderers" ReturnType="configService.Renderers" m:HttpMethod="POST" sap:action-for="configService.Renderers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Renderers_draftEdit" EntitySet="Renderers" ReturnType="configService.Renderers" m:HttpMethod="POST" sap:action-for="configService.Renderers">
+                    <Parameter Name="ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="Renderers_texts" EntityType="configService.Renderers_texts"/>
+                <EntitySet Name="Scenarios" EntityType="configService.Scenarios"/>
+                <EntitySet Name="Scenarios_texts" EntityType="configService.Scenarios_texts"/>
+                <EntitySet Name="ServiceType" EntityType="configService.ServiceType"/>
+                <EntitySet Name="ServiceTypes_texts" EntityType="configService.ServiceTypes_texts"/>
+                <FunctionImport Name="getConfig" ReturnType="configService.NetworkSpatialConfig" m:HttpMethod="GET"/>
+                <AssociationSet Name="ActionType_texts" Association="configService.ActionType_texts">
+                    <End Role="ActionType" EntitySet="ActionType"/>
+                    <End Role="ActionTypes_texts" EntitySet="ActionTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="ActionType_localized" Association="configService.ActionType_localized">
+                    <End Role="ActionType" EntitySet="ActionType"/>
+                    <End Role="ActionTypes_texts" EntitySet="ActionTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_ActionType" Association="configService.Actions_ActionType">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="ActionType" EntitySet="ActionType"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_BusinessObjectType" Association="configService.Actions_BusinessObjectType">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_texts_1" Association="configService.Actions_texts_1">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="Actions_texts" EntitySet="Actions_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_localized" Association="configService.Actions_localized">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="Actions_texts" EntitySet="Actions_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_DraftAdministrativeData" Association="configService.Actions_DraftAdministrativeData">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_SiblingEntity" Association="configService.Actions_SiblingEntity">
+                    <End Role="Actions" EntitySet="Actions"/>
+                    <End Role="Actions1" EntitySet="Actions"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_in_Scenarios_Scenario" Association="configService.Actions_in_Scenarios_Scenario">
+                    <End Role="Actions_in_Scenarios" EntitySet="Actions_in_Scenarios"/>
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                </AssociationSet>
+                <AssociationSet Name="Actions_in_Scenarios_Action" Association="configService.Actions_in_Scenarios_Action">
+                    <End Role="Actions_in_Scenarios" EntitySet="Actions_in_Scenarios"/>
+                    <End Role="Actions" EntitySet="Actions"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectType_texts" Association="configService.BusinessObjectType_texts">
+                    <End Role="BusinessObjectType" EntitySet="BusinessObjectType"/>
+                    <End Role="BusinessObjectTypes_texts" EntitySet="BusinessObjectTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectType_localized" Association="configService.BusinessObjectType_localized">
+                    <End Role="BusinessObjectType" EntitySet="BusinessObjectType"/>
+                    <End Role="BusinessObjectTypes_texts" EntitySet="BusinessObjectTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectTypes_texts_1" Association="configService.BusinessObjectTypes_texts_1">
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                    <End Role="BusinessObjectTypes_texts" EntitySet="BusinessObjectTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectTypes_localized" Association="configService.BusinessObjectTypes_localized">
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                    <End Role="BusinessObjectTypes_texts" EntitySet="BusinessObjectTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectTypes_DraftAdministrativeData" Association="configService.BusinessObjectTypes_DraftAdministrativeData">
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjectTypes_SiblingEntity" Association="configService.BusinessObjectTypes_SiblingEntity">
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                    <End Role="BusinessObjectTypes1" EntitySet="BusinessObjectTypes"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjects_in_Scenarios_Scenario" Association="configService.BusinessObjects_in_Scenarios_Scenario">
+                    <End Role="BusinessObjects_in_Scenarios" EntitySet="BusinessObjects_in_Scenarios"/>
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                </AssociationSet>
+                <AssociationSet Name="BusinessObjects_in_Scenarios_BusinessObject" Association="configService.BusinessObjects_in_Scenarios_BusinessObject">
+                    <End Role="BusinessObjects_in_Scenarios" EntitySet="BusinessObjects_in_Scenarios"/>
+                    <End Role="BusinessObjectTypes" EntitySet="BusinessObjectTypes"/>
+                </AssociationSet>
+                <AssociationSet Name="LayerType_texts" Association="configService.LayerType_texts">
+                    <End Role="LayerType" EntitySet="LayerType"/>
+                    <End Role="LayerTypes_texts" EntitySet="LayerTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="LayerType_localized" Association="configService.LayerType_localized">
+                    <End Role="LayerType" EntitySet="LayerType"/>
+                    <End Role="LayerTypes_texts" EntitySet="LayerTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_ServiceType" Association="configService.Layers_ServiceType">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="ServiceType" EntitySet="ServiceType"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_LayerType" Association="configService.Layers_LayerType">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="LayerType" EntitySet="LayerType"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_texts_1" Association="configService.Layers_texts_1">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="Layers_texts" EntitySet="Layers_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_localized" Association="configService.Layers_localized">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="Layers_texts" EntitySet="Layers_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_DraftAdministrativeData" Association="configService.Layers_DraftAdministrativeData">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_SiblingEntity" Association="configService.Layers_SiblingEntity">
+                    <End Role="Layers" EntitySet="Layers"/>
+                    <End Role="Layers1" EntitySet="Layers"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_in_Scenarios_Scenario" Association="configService.Layers_in_Scenarios_Scenario">
+                    <End Role="Layers_in_Scenarios" EntitySet="Layers_in_Scenarios"/>
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                </AssociationSet>
+                <AssociationSet Name="Layers_in_Scenarios_Layer" Association="configService.Layers_in_Scenarios_Layer">
+                    <End Role="Layers_in_Scenarios" EntitySet="Layers_in_Scenarios"/>
+                    <End Role="Layers" EntitySet="Layers"/>
+                </AssociationSet>
+                <AssociationSet Name="Renderers_texts_1" Association="configService.Renderers_texts_1">
+                    <End Role="Renderers" EntitySet="Renderers"/>
+                    <End Role="Renderers_texts" EntitySet="Renderers_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Renderers_localized" Association="configService.Renderers_localized">
+                    <End Role="Renderers" EntitySet="Renderers"/>
+                    <End Role="Renderers_texts" EntitySet="Renderers_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Renderers_DraftAdministrativeData" Association="configService.Renderers_DraftAdministrativeData">
+                    <End Role="Renderers" EntitySet="Renderers"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Renderers_SiblingEntity" Association="configService.Renderers_SiblingEntity">
+                    <End Role="Renderers" EntitySet="Renderers"/>
+                    <End Role="Renderers1" EntitySet="Renderers"/>
+                </AssociationSet>
+                <AssociationSet Name="Scenarios_Renderer" Association="configService.Scenarios_Renderer">
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                    <End Role="Renderers" EntitySet="Renderers"/>
+                </AssociationSet>
+                <AssociationSet Name="Scenarios_texts_1" Association="configService.Scenarios_texts_1">
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                    <End Role="Scenarios_texts" EntitySet="Scenarios_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Scenarios_localized" Association="configService.Scenarios_localized">
+                    <End Role="Scenarios" EntitySet="Scenarios"/>
+                    <End Role="Scenarios_texts" EntitySet="Scenarios_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="ServiceType_texts" Association="configService.ServiceType_texts">
+                    <End Role="ServiceType" EntitySet="ServiceType"/>
+                    <End Role="ServiceTypes_texts" EntitySet="ServiceTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="ServiceType_localized" Association="configService.ServiceType_localized">
+                    <End Role="ServiceType" EntitySet="ServiceType"/>
+                    <End Role="ServiceTypes_texts" EntitySet="ServiceTypes_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="Action_ActionType" Association="configService.Action_ActionType">
+                    <End Role="Action" EntitySet="Action"/>
+                    <End Role="ActionType" EntitySet="ActionType"/>
+                </AssociationSet>
+                <AssociationSet Name="Action_BusinessObjectType" Association="configService.Action_BusinessObjectType">
+                    <End Role="Action" EntitySet="Action"/>
+                    <End Role="BusinessObjectType" EntitySet="BusinessObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="Layer_ServiceType" Association="configService.Layer_ServiceType">
+                    <End Role="Layer" EntitySet="Layer"/>
+                    <End Role="ServiceType" EntitySet="ServiceType"/>
+                </AssociationSet>
+                <AssociationSet Name="Layer_LayerType" Association="configService.Layer_LayerType">
+                    <End Role="Layer" EntitySet="Layer"/>
+                    <End Role="LayerType" EntitySet="LayerType"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="ActionType">
+                <Key>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <NavigationProperty Name="texts" Relationship="configService.ActionType_texts" FromRole="ActionType" ToRole="ActionTypes_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.ActionType_localized" FromRole="ActionType" ToRole="ActionTypes_texts"/>
+            </EntityType>
+            <EntityType Name="ActionTypes_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Actions">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <NavigationProperty Name="ActionType" Relationship="configService.Actions_ActionType" FromRole="Actions" ToRole="ActionType"/>
+                <NavigationProperty Name="BusinessObjectType" Relationship="configService.Actions_BusinessObjectType" FromRole="Actions" ToRole="BusinessObjectTypes"/>
+                <Property Name="SemanticObject" Type="Edm.String"/>
+                <Property Name="Action" Type="Edm.String"/>
+                <Property Name="Url" Type="Edm.String"/>
+                <Property Name="Parameters" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Relationship="configService.Actions_texts_1" FromRole="Actions" ToRole="Actions_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.Actions_localized" FromRole="Actions" ToRole="Actions_texts"/>
+                <Property Name="ActionType_Code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="BusinessObjectType_ID" Type="Edm.Guid"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="configService.Actions_DraftAdministrativeData" FromRole="Actions" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="configService.Actions_SiblingEntity" FromRole="Actions" ToRole="Actions1"/>
+            </EntityType>
+            <EntityType Name="Actions_in_Scenarios">
+                <NavigationProperty Name="Scenario" Relationship="configService.Actions_in_Scenarios_Scenario" FromRole="Actions_in_Scenarios" ToRole="Scenarios"/>
+                <NavigationProperty Name="Action" Relationship="configService.Actions_in_Scenarios_Action" FromRole="Actions_in_Scenarios" ToRole="Actions"/>
+                <Property Name="Scenario_ID" Type="Edm.Guid"/>
+                <Property Name="Action_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="Actions_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="BusinessObjectType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Relationship="configService.BusinessObjectType_texts" FromRole="BusinessObjectType" ToRole="BusinessObjectTypes_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.BusinessObjectType_localized" FromRole="BusinessObjectType" ToRole="BusinessObjectTypes_texts"/>
+            </EntityType>
+            <EntityType Name="BusinessObjectTypes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Relationship="configService.BusinessObjectTypes_texts_1" FromRole="BusinessObjectTypes" ToRole="BusinessObjectTypes_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.BusinessObjectTypes_localized" FromRole="BusinessObjectTypes" ToRole="BusinessObjectTypes_texts"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="configService.BusinessObjectTypes_DraftAdministrativeData" FromRole="BusinessObjectTypes" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="configService.BusinessObjectTypes_SiblingEntity" FromRole="BusinessObjectTypes" ToRole="BusinessObjectTypes1"/>
+            </EntityType>
+            <EntityType Name="BusinessObjectTypes_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="BusinessObjects_in_Scenarios">
+                <NavigationProperty Name="Scenario" Relationship="configService.BusinessObjects_in_Scenarios_Scenario" FromRole="BusinessObjects_in_Scenarios" ToRole="Scenarios"/>
+                <NavigationProperty Name="BusinessObject" Relationship="configService.BusinessObjects_in_Scenarios_BusinessObject" FromRole="BusinessObjects_in_Scenarios" ToRole="BusinessObjectTypes"/>
+                <Property Name="Scenario_ID" Type="Edm.Guid"/>
+                <Property Name="BusinessObject_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="LayerType">
+                <Key>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <NavigationProperty Name="texts" Relationship="configService.LayerType_texts" FromRole="LayerType" ToRole="LayerTypes_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.LayerType_localized" FromRole="LayerType" ToRole="LayerTypes_texts"/>
+            </EntityType>
+            <EntityType Name="LayerTypes_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Layers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <NavigationProperty Name="ServiceType" Relationship="configService.Layers_ServiceType" FromRole="Layers" ToRole="ServiceType"/>
+                <Property Name="ServiceUrl" Type="Edm.String"/>
+                <Property Name="OdataFieldNameGeometry" Type="Edm.String"/>
+                <Property Name="OdataFieldNameProperties" Type="Edm.String"/>
+                <NavigationProperty Name="LayerType" Relationship="configService.Layers_LayerType" FromRole="Layers" ToRole="LayerType"/>
+                <Property Name="MinZoom" Type="Edm.Int32"/>
+                <Property Name="LayoutJson" Type="Edm.String"/>
+                <Property Name="PaintJson" Type="Edm.String"/>
+                <Property Name="MarkerUrl" Type="Edm.String"/>
+                <Property Name="MarkerFallback" Type="Edm.String"/>
+                <Property Name="Attribution" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Relationship="configService.Layers_texts_1" FromRole="Layers" ToRole="Layers_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.Layers_localized" FromRole="Layers" ToRole="Layers_texts"/>
+                <Property Name="ServiceType_Code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="LayerType_Code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="configService.Layers_DraftAdministrativeData" FromRole="Layers" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="configService.Layers_SiblingEntity" FromRole="Layers" ToRole="Layers1"/>
+            </EntityType>
+            <EntityType Name="Layers_in_Scenarios">
+                <NavigationProperty Name="Scenario" Relationship="configService.Layers_in_Scenarios_Scenario" FromRole="Layers_in_Scenarios" ToRole="Scenarios"/>
+                <NavigationProperty Name="Layer" Relationship="configService.Layers_in_Scenarios_Layer" FromRole="Layers_in_Scenarios" ToRole="Layers"/>
+                <Property Name="Scenario_ID" Type="Edm.Guid"/>
+                <Property Name="Layer_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="Layers_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Renderers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="AccessToken" Type="Edm.String"/>
+                <Property Name="CloudFoundryDestination" Type="Edm.String"/>
+                <Property Name="Url" Type="Edm.String"/>
+                <Property Name="DefaultCenterLatitude" Type="Edm.Double"/>
+                <Property Name="DefaultCenterLongitude" Type="Edm.Double"/>
+                <Property Name="DefaultZoomLevel" Type="Edm.Int32"/>
+                <Property Name="DefaultStyle" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Relationship="configService.Renderers_texts_1" FromRole="Renderers" ToRole="Renderers_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.Renderers_localized" FromRole="Renderers" ToRole="Renderers_texts"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="configService.Renderers_DraftAdministrativeData" FromRole="Renderers" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="configService.Renderers_SiblingEntity" FromRole="Renderers" ToRole="Renderers1"/>
+            </EntityType>
+            <EntityType Name="Renderers_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Scenarios">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ClientId" Type="Edm.Guid"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <NavigationProperty Name="Renderer" Relationship="configService.Scenarios_Renderer" FromRole="Scenarios" ToRole="Renderers"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <NavigationProperty Name="BusinessObjects" Relationship="configService.BusinessObjects_in_Scenarios_Scenario" FromRole="Scenarios" ToRole="BusinessObjects_in_Scenarios"/>
+                <NavigationProperty Name="Layers" Relationship="configService.Layers_in_Scenarios_Scenario" FromRole="Scenarios" ToRole="Layers_in_Scenarios"/>
+                <NavigationProperty Name="Actions" Relationship="configService.Actions_in_Scenarios_Scenario" FromRole="Scenarios" ToRole="Actions_in_Scenarios"/>
+                <NavigationProperty Name="texts" Relationship="configService.Scenarios_texts_1" FromRole="Scenarios" ToRole="Scenarios_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.Scenarios_localized" FromRole="Scenarios" ToRole="Scenarios_texts"/>
+                <Property Name="Renderer_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="Scenarios_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ServiceType">
+                <Key>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <NavigationProperty Name="texts" Relationship="configService.ServiceType_texts" FromRole="ServiceType" ToRole="ServiceTypes_texts"/>
+                <NavigationProperty Name="localized" Relationship="configService.ServiceType_localized" FromRole="ServiceType" ToRole="ServiceTypes_texts"/>
+            </EntityType>
+            <EntityType Name="ServiceTypes_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="20" Nullable="false"/>
+            </EntityType>
+            <ComplexType Name="Action">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="SemanticObject" Type="Edm.String"/>
+                <Property Name="Action" Type="Edm.String"/>
+                <Property Name="Url" Type="Edm.String"/>
+                <NavigationProperty Name="ActionType" Relationship="configService.Action_ActionType" FromRole="Action" ToRole="ActionType"/>
+                <NavigationProperty Name="BusinessObjectType" Relationship="configService.Action_BusinessObjectType" FromRole="Action" ToRole="BusinessObjectType"/>
+                <Property Name="Parameters" Type="Collection(configService.Parameters)" Nullable="false"/>
+                <Property Name="ActionType_Code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="BusinessObjectType_ID" Type="Edm.Guid"/>
+            </ComplexType>
+            <ComplexType Name="Layer">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <NavigationProperty Name="ServiceType" Relationship="configService.Layer_ServiceType" FromRole="Layer" ToRole="ServiceType"/>
+                <Property Name="ServiceUrl" Type="Edm.String"/>
+                <Property Name="OdataFieldNameGeometry" Type="Edm.String"/>
+                <Property Name="OdataFieldNameProperties" Type="Edm.String"/>
+                <NavigationProperty Name="LayerType" Relationship="configService.Layer_LayerType" FromRole="Layer" ToRole="LayerType"/>
+                <Property Name="MinZoom" Type="Edm.Int32"/>
+                <Property Name="LayoutJson" Type="Edm.String"/>
+                <Property Name="PaintJson" Type="Edm.String"/>
+                <Property Name="MarkerUrl" Type="Edm.String"/>
+                <Property Name="MarkerFallback" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+                <Property Name="ServiceType_Code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="LayerType_Code" Type="Edm.String" MaxLength="20"/>
+            </ComplexType>
+            <ComplexType Name="NetworkSpatialConfig">
+                <Property Name="_version" Type="Edm.String"/>
+                <Property Name="ClientId" Type="Edm.String"/>
+                <Property Name="Renderers" Type="Collection(configService.Renderer)" Nullable="false"/>
+                <Property Name="Actions" Type="Collection(configService.Action)" Nullable="false"/>
+                <Property Name="Layers" Type="Collection(configService.Layer)" Nullable="false"/>
+                <Property Name="BusinessObjectTypes" Type="Collection(configService._BusinessObjectType)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="Parameters">
+                <Property Name="KeyName" Type="Edm.String"/>
+                <Property Name="Value" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="Renderer">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="AccessToken" Type="Edm.String"/>
+                <Property Name="CloudFoundryDestination" Type="Edm.String"/>
+                <Property Name="Url" Type="Edm.String"/>
+                <Property Name="DefaultCenterLatitude" Type="Edm.Double"/>
+                <Property Name="DefaultCenterLongitude" Type="Edm.Double"/>
+                <Property Name="DefaultZoomLevel" Type="Edm.Int32"/>
+                <Property Name="DefaultStyle" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="_BusinessObjectType">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="JsonConfig" Type="Edm.String"/>
+            </ComplexType>
+            <Association Name="ActionType_texts">
+                <End Role="ActionType" Type="configService.ActionType" Multiplicity="*"/>
+                <End Role="ActionTypes_texts" Type="configService.ActionTypes_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="ActionType_localized">
+                <End Role="ActionType" Type="configService.ActionType" Multiplicity="*"/>
+                <End Role="ActionTypes_texts" Type="configService.ActionTypes_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ActionTypes_texts">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="ActionType">
+                        <PropertyRef Name="Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_ActionType">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="ActionType" Type="configService.ActionType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ActionType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Actions">
+                        <PropertyRef Name="ActionType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_BusinessObjectType">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessObjectTypes">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Actions">
+                        <PropertyRef Name="BusinessObjectType_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_texts_1">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="Actions_texts" Type="configService.Actions_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="Actions_localized">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="Actions_texts" Type="configService.Actions_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Actions_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Actions">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_DraftAdministrativeData">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="configService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Actions">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_SiblingEntity">
+                <End Role="Actions" Type="configService.Actions" Multiplicity="*"/>
+                <End Role="Actions1" Type="configService.Actions" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Actions_in_Scenarios_Scenario">
+                <End Role="Actions_in_Scenarios" Type="configService.Actions_in_Scenarios" Multiplicity="*"/>
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Scenarios">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Actions_in_Scenarios">
+                        <PropertyRef Name="Scenario_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Actions_in_Scenarios_Action">
+                <End Role="Actions_in_Scenarios" Type="configService.Actions_in_Scenarios" Multiplicity="*"/>
+                <End Role="Actions" Type="configService.Actions" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Actions">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Actions_in_Scenarios">
+                        <PropertyRef Name="Action_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessObjectType_texts">
+                <End Role="BusinessObjectType" Type="configService.BusinessObjectType" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes_texts" Type="configService.BusinessObjectTypes_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="BusinessObjectType_localized">
+                <End Role="BusinessObjectType" Type="configService.BusinessObjectType" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes_texts" Type="configService.BusinessObjectTypes_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessObjectTypes_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessObjectType">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessObjectTypes_texts_1">
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes_texts" Type="configService.BusinessObjectTypes_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="BusinessObjectTypes_localized">
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes_texts" Type="configService.BusinessObjectTypes_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessObjectTypes_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessObjectTypes">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessObjectTypes_DraftAdministrativeData">
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="configService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="BusinessObjectTypes">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessObjectTypes_SiblingEntity">
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes1" Type="configService.BusinessObjectTypes" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="BusinessObjects_in_Scenarios_Scenario">
+                <End Role="BusinessObjects_in_Scenarios" Type="configService.BusinessObjects_in_Scenarios" Multiplicity="*"/>
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Scenarios">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessObjects_in_Scenarios">
+                        <PropertyRef Name="Scenario_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BusinessObjects_in_Scenarios_BusinessObject">
+                <End Role="BusinessObjects_in_Scenarios" Type="configService.BusinessObjects_in_Scenarios" Multiplicity="*"/>
+                <End Role="BusinessObjectTypes" Type="configService.BusinessObjectTypes" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessObjectTypes">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="BusinessObjects_in_Scenarios">
+                        <PropertyRef Name="BusinessObject_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="LayerType_texts">
+                <End Role="LayerType" Type="configService.LayerType" Multiplicity="*"/>
+                <End Role="LayerTypes_texts" Type="configService.LayerTypes_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="LayerType_localized">
+                <End Role="LayerType" Type="configService.LayerType" Multiplicity="*"/>
+                <End Role="LayerTypes_texts" Type="configService.LayerTypes_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="LayerTypes_texts">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="LayerType">
+                        <PropertyRef Name="Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_ServiceType">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="ServiceType" Type="configService.ServiceType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ServiceType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Layers">
+                        <PropertyRef Name="ServiceType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_LayerType">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="LayerType" Type="configService.LayerType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="LayerType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Layers">
+                        <PropertyRef Name="LayerType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_texts_1">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="Layers_texts" Type="configService.Layers_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="Layers_localized">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="Layers_texts" Type="configService.Layers_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Layers_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Layers">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_DraftAdministrativeData">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="configService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Layers">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_SiblingEntity">
+                <End Role="Layers" Type="configService.Layers" Multiplicity="*"/>
+                <End Role="Layers1" Type="configService.Layers" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Layers_in_Scenarios_Scenario">
+                <End Role="Layers_in_Scenarios" Type="configService.Layers_in_Scenarios" Multiplicity="*"/>
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Scenarios">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Layers_in_Scenarios">
+                        <PropertyRef Name="Scenario_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layers_in_Scenarios_Layer">
+                <End Role="Layers_in_Scenarios" Type="configService.Layers_in_Scenarios" Multiplicity="*"/>
+                <End Role="Layers" Type="configService.Layers" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Layers">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Layers_in_Scenarios">
+                        <PropertyRef Name="Layer_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Renderers_texts_1">
+                <End Role="Renderers" Type="configService.Renderers" Multiplicity="*"/>
+                <End Role="Renderers_texts" Type="configService.Renderers_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="Renderers_localized">
+                <End Role="Renderers" Type="configService.Renderers" Multiplicity="*"/>
+                <End Role="Renderers_texts" Type="configService.Renderers_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Renderers_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Renderers">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Renderers_DraftAdministrativeData">
+                <End Role="Renderers" Type="configService.Renderers" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="configService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Renderers">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Renderers_SiblingEntity">
+                <End Role="Renderers" Type="configService.Renderers" Multiplicity="*"/>
+                <End Role="Renderers1" Type="configService.Renderers" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Scenarios_Renderer">
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="*"/>
+                <End Role="Renderers" Type="configService.Renderers" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Renderers">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Scenarios">
+                        <PropertyRef Name="Renderer_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Scenarios_texts_1">
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="*"/>
+                <End Role="Scenarios_texts" Type="configService.Scenarios_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="Scenarios_localized">
+                <End Role="Scenarios" Type="configService.Scenarios" Multiplicity="*"/>
+                <End Role="Scenarios_texts" Type="configService.Scenarios_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Scenarios_texts">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Scenarios">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ServiceType_texts">
+                <End Role="ServiceType" Type="configService.ServiceType" Multiplicity="*"/>
+                <End Role="ServiceTypes_texts" Type="configService.ServiceTypes_texts" Multiplicity="*">
+                    <OnDelete Action="Cascade"/>
+                </End>
+            </Association>
+            <Association Name="ServiceType_localized">
+                <End Role="ServiceType" Type="configService.ServiceType" Multiplicity="*"/>
+                <End Role="ServiceTypes_texts" Type="configService.ServiceTypes_texts" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ServiceTypes_texts">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="ServiceType">
+                        <PropertyRef Name="Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Action_ActionType">
+                <End Role="Action" Type="configService.Action" Multiplicity="*"/>
+                <End Role="ActionType" Type="configService.ActionType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ActionType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Action">
+                        <PropertyRef Name="ActionType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Action_BusinessObjectType">
+                <End Role="Action" Type="configService.Action" Multiplicity="*"/>
+                <End Role="BusinessObjectType" Type="configService.BusinessObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BusinessObjectType">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Action">
+                        <PropertyRef Name="BusinessObjectType_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layer_ServiceType">
+                <End Role="Layer" Type="configService.Layer" Multiplicity="*"/>
+                <End Role="ServiceType" Type="configService.ServiceType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ServiceType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Layer">
+                        <PropertyRef Name="ServiceType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Layer_LayerType">
+                <End Role="Layer" Type="configService.Layer" Multiplicity="*"/>
+                <End Role="LayerType" Type="configService.LayerType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="LayerType">
+                        <PropertyRef Name="Code"/>
+                    </Principal>
+                    <Dependent Role="Layer">
+                        <PropertyRef Name="LayerType_Code"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Annotations Target="configService.Action/ActionType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="ActionType"/>
+                        <PropertyValue Property="CollectionPath" String="ActionType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ActionType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.ActionType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.ActionType/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.ActionType/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.ActionType/Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.ActionTypes_texts/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.ActionTypes_texts/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.Actions" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Action"/>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInformation"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="ActionInfo">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ActionType_Code"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="BusinessObjectType_ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneralInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="SemanticObject"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Action"/>
+                                </Record>
+                                <Record Type="UI.DataFieldWithUrl">
+                                    <PropertyValue Property="Value" Path="Url"/>
+                                    <PropertyValue Property="Url" Path="Url"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Parameters"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ActionInfo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Name"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="Action"/>
+                        <PropertyValue Property="TypeNamePlural" String="Actions"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ActionType_Code"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="BusinessObjectType_ID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SemanticObject"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Name</PropertyPath>
+                        <PropertyPath>ActionType_Code</PropertyPath>
+                        <PropertyPath>BusinessObjectType_ID</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.EntityContainer/Actions" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="configService.EntityContainer/Actions_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="configService.EntityContainer/Actions_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="configService.EntityContainer/Actions_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Actions/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/Description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/ActionType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Action Type"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/BusinessObjectType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Business Object Type"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/SemanticObject" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Semantic Object"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/Action" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Action"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/Url" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="URL"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/Parameters" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Parameters"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/ActionType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Action Type"/>
+                <Annotation Term="Common.Text" Path="ActionType/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Action Type"/>
+                        <PropertyValue Property="CollectionPath" String="ActionType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ActionType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Actions/BusinessObjectType_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Business Object Type"/>
+                <Annotation Term="Common.Text" Path="BusinessObjectType/Name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="BusinessObjectTypes"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BusinessObjectType_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Actions_texts/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectType/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Business Object Type"/>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneralInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="JsonConfig"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInformation"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Name"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="Business Object Type"/>
+                        <PropertyValue Property="TypeNamePlural" String="Business Object Types"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Name</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.EntityContainer/BusinessObjectTypes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="configService.EntityContainer/BusinessObjectTypes_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="configService.EntityContainer/BusinessObjectTypes_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="configService.EntityContainer/BusinessObjectTypes_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ID"/>
+                <Annotation Term="Common.Text" Path="Name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/Description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/JsonConfig" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="JSON Config"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.BusinessObjectTypes_texts/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Administrative Data"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft (Technical ID)"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/CreationDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created On"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/CreatedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created By"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/DraftIsCreatedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created By Me"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/LastChangeDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Last Changed On"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/LastChangedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Last Changed By"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/InProcessByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft In Process By"/>
+            </Annotations>
+            <Annotations Target="configService.DraftAdministrativeData/DraftIsProcessedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft In Process By Me"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layer/ServiceType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="ServiceType"/>
+                        <PropertyValue Property="CollectionPath" String="ServiceType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ServiceType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Layer/LayerType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="LayerType"/>
+                        <PropertyValue Property="CollectionPath" String="LayerType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LayerType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.LayerType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.LayerType/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.LayerType/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.LayerType/Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Code"/>
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.LayerTypes_texts/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.LayerTypes_texts/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.Layers" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Layer"/>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Layer Overview"/>
+                            <PropertyValue Property="ID" String="LayerOverviewFacet"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="General Information"/>
+                                        <PropertyValue Property="ID" String="GeneralInformationFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInformation"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Configuration Detail"/>
+                                        <PropertyValue Property="ID" String="ConfigurationDetailFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ConfigurationDetail"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="ConfigurationDetail">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="LayoutJson"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="PaintJson"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="MarkerUrl"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="MarkerFallback"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="JsonConfig"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneralInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ServiceType_Code"/>
+                                </Record>
+                                <Record Type="UI.DataFieldWithUrl">
+                                    <PropertyValue Property="Value" Path="ServiceUrl"/>
+                                    <PropertyValue Property="Url" Path="ServiceUrl"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OdataFieldNameGeometry"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OdataFieldNameProperties"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="LayerInfo">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="LayerType_Code"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="MinZoom"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#LayerInfo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Name"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="Layer"/>
+                        <PropertyValue Property="TypeNamePlural" String="Layers"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LayerType_Code"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ServiceType_Code"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MinZoom"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Name</PropertyPath>
+                        <PropertyPath>LayerType_Code</PropertyPath>
+                        <PropertyPath>ServiceType_Code</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.EntityContainer/Layers" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="configService.EntityContainer/Layers_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="configService.EntityContainer/Layers_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="configService.EntityContainer/Layers_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Layers/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/Description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/ServiceType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Service Type"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/ServiceUrl" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Service URL"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/OdataFieldNameGeometry" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="OData Field Name Geometry"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/OdataFieldNameProperties" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="OData Field Name Properties"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/LayerType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Layer Type"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/MinZoom" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Min Zoom"/>
+                <Annotation Term="Validation.Maximum" Int="100"/>
+                <Annotation Term="Validation.Minimum" Int="0"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/LayoutJson" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Layout JSON"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/PaintJson" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Paint JSON"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/MarkerUrl" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Marker URL"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/MarkerFallback" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Marker Fallback"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/JsonConfig" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="JSON Config"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/ServiceType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Service Type"/>
+                <Annotation Term="Common.Text" Path="ServiceType/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Service Type"/>
+                        <PropertyValue Property="CollectionPath" String="ServiceType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ServiceType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Layers/LayerType_Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Layer Type"/>
+                <Annotation Term="Common.Text" Path="LayerType/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Layer Type"/>
+                        <PropertyValue Property="CollectionPath" String="LayerType"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LayerType_Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Layers/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Layers_texts/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Renderer"/>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInformation"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneralInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="AccessToken"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CloudFoundryDestination"/>
+                                </Record>
+                                <Record Type="UI.DataFieldWithUrl">
+                                    <PropertyValue Property="Value" Path="Url"/>
+                                    <PropertyValue Property="Url" Path="Url"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DefaultStyle"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="JsonConfig"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="RendererInfo">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DefaultCenterLatitude"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DefaultCenterLongitude"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DefaultZoomLevel"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#RendererInfo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Name"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="Renderer"/>
+                        <PropertyValue Property="TypeNamePlural" String="Renderers"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AccessToken"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CloudFoundryDestination"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Name</PropertyPath>
+                        <PropertyPath>CloudFoundryDestination</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.EntityContainer/Renderers" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="configService.EntityContainer/Renderers_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="configService.EntityContainer/Renderers_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="configService.EntityContainer/Renderers_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.Renderers/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/Description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/AccessToken" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Access Token"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/CloudFoundryDestination" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Cloud Foundry Destination"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/Url" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Service URL"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DefaultCenterLatitude" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Default Center Latitude"/>
+                <Annotation Term="Validation.Maximum" Int="180"/>
+                <Annotation Term="Validation.Minimum" Int="-180"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DefaultCenterLongitude" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Default Center Longitude"/>
+                <Annotation Term="Validation.Maximum" Int="180"/>
+                <Annotation Term="Validation.Minimum" Int="-180"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DefaultZoomLevel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Default Zoom Level"/>
+                <Annotation Term="Validation.Maximum" Int="100"/>
+                <Annotation Term="Validation.Minimum" Int="0"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DefaultStyle" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Default Style"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/JsonConfig" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="JSON Config"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.Renderers/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.ServiceType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="configService.ServiceType/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.ServiceType/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="configService.ServiceType/Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Code"/>
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="configService.ServiceTypes_texts/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="configService.ServiceTypes_texts/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
