@@ -1,0 +1,27 @@
+<mvc:View controllerName="com.sap.nss.nsaa.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<IconTabBar id="idIconTabBarStretchContent" stretchContentHeight="true" backgroundDesign="Transparent" applyContentPadding="false" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter text="Renderer" key="renderer">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.renderer.Renderer"/>
+			</IconTabFilter>
+			<IconTabFilter text="BusinessObjects" key="businessobject">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.businessobject.BusinessObjects"/>
+			</IconTabFilter>
+			<IconTabFilter text="Layers" key="layer">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.layer.Layer"/>
+			</IconTabFilter>
+			<IconTabFilter text="Actions" key="action">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.action.Action"/>
+			</IconTabFilter>
+			<IconTabFilter text="Scenarios" key="scenario">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.scenario.Scenario"/>
+			</IconTabFilter>
+			<IconTabFilter text="Applications" key="application">
+				<mvc:XMLView viewName="com.sap.nss.nsaa.application.Application"/>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</mvc:View>

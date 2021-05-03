@@ -1,0 +1,18 @@
+{
+	"ActionCollection": [
+		{
+			"ActionName": "Action Name 1",
+			"Description": "Action 1 Description",
+			"AppliesTo": "Global",
+			"LinkToApi": "Link ...",
+			"Interaction": "Single Click / Tap"
+		},
+		{
+			"ActionName": "Action Name 2",
+			"Description": "Action 2 Description",
+			"AppliesTo": "Global",
+			"LinkToApi": "Link ...",
+			"Interaction": "Single Click / Tap"
+		}
+	]	
+}

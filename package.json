@@ -1,42 +1,25 @@
 {
-    "name": "network-spatial-service",
-    "version": "1.0.0",
-    "description": "Network Spatial Servic",
-    "main": "index.js",
-    "scripts": {
-        "lint": "eslint . --max-warnings 0 --fix",
-        "lint-azure": "eslint . --max-warnings 0 -f node_modules/eslint-html-reporter/reporter.js -o ./report/lint-results.html",
-        "build:map": "cd map && npm run build && npm install && cd ..",
-        "build": "npm run build:map && NODE_ENV=production mbt build"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://rizing-devops@dev.azure.com/rizing-devops/ds-sap-spatial/_git/network-spatial-service"
-    },
-    "author": "Jhodel Cailan",
-    "license": "ISC",
-    "dependencies": {
-        "@sap/cds-odata-v2-adapter-proxy": "^1.6.2",
-        "mbt": "^1.1.1"
-    },
-    "devDependencies": {
-        "eslint": "^7.23.0",
-        "eslint-html-reporter": "^0.7.4"
-    },
-    "cds": {
-        "uaa": {
-            "kind": "xsuaa"
-        },
-        "hana": {
-            "deploy-format": "hdbtable"
-        },
-        "requires": {
-            "db": {
-                "kind": "sql",
-                "[production]": {
-                    "kind": "hana"
-                }
-            }
-        }
-    }
+	"name": "network-spatial-service",
+	"version": "1.0.0",
+	"description": "Network Spatial Servic",
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint . --max-warnings 0 --fix",
+		"lint-azure": "eslint . --max-warnings 0 -f node_modules/eslint-html-reporter/reporter.js -o ./report/lint-results.html",
+		"build:map": "cd map && npm run build && npm install && cd ..",
+		"build": "npm run build:map && NODE_ENV=production mbt build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://rizing-devops@dev.azure.com/rizing-devops/ds-sap-spatial/_git/network-spatial-service"
+	},
+	"author": "Jhodel Cailan",
+	"license": "ISC",
+	"dependencies": {
+		"mbt": "^1.1.1"
+	},
+	"devDependencies": {
+		"eslint": "^7.23.0",
+		"eslint-html-reporter": "^0.7.4"
+	}
 }

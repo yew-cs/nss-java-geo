@@ -4,14 +4,17 @@
 	"description": "Map Control for NSC Client",
 	"main": "server.js",
 	"scripts": {
-		"copy": "cp ./node_modules/@rizing/nsc-client/bundle.js ./public/",
-		"build": "npm install @rizing/nsc-client@latest && npm run copy",
+		"copy:server": "cp ./node_modules/@rizing/nsc-server/index.js* ./public/nsc-server/",
+		"copy:client": "cp ./node_modules/@rizing/nsc-client/bundle.js ./public/",
+		"copy": "npm run copy:server && npm run copy:client",
+		"build": "npm install @rizing/nsc-server@latest && npm install @rizing/nsc-client@latest && npm run copy",
 		"start": "node server.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@rizing/nsc-client": "0.0.17",
+		"@rizing/nsc-client": "0.0.22",
+		"@rizing/nsc-server": "0.0.23",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",

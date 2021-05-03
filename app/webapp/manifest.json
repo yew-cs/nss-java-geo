@@ -1,0 +1,77 @@
+{
+    "_version": "",
+    "sap.app": {
+        "id": "com.sap.nss.nsaa",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v2/adminconfig/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.sap.nss.nsaa.Main",
+            "type": "XML",
+            "async": true
+        },
+        "dependencies": {
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay"
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.sap.nss.nsaa",
+                "controlAggregation": "pages",
+                "controlId": "fioriContent",
+                "async": true
+            },
+            "routes": [{
+                "pattern": "create",
+                "name": "create",
+                "target": "create"
+            }],
+            "targets": {
+                "create": {
+                    "viewName": "scenario/CreateEntity",
+                    "viewLevel": 2
+                }
+            }
+        },
+        "config": {
+            "sample": {
+                "files": [
+                    "Main.view.xml",
+                    "Main.controller.js",
+                    "manifest.json"
+                ]
+            }
+        }
+    }
+}

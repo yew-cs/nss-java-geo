@@ -1,7 +1,6 @@
 package com.sap.bnc.nss.handlers;
 
 import java.sql.SQLException;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import cds.gen.nsaa.*;
+import cds.gen.nsaa.Actions;
+import cds.gen.nsaa.Actions_;
+import cds.gen.nsaa.BusinessObjectTypes;
+import cds.gen.nsaa.BusinessObjectTypes_;
+import cds.gen.nsaa.Layers;
+import cds.gen.nsaa.Layers_;
+import cds.gen.nsaa.Renderers;
+import cds.gen.nsaa.Renderers_;
 import cds.gen.configservice.Renderer;
 import cds.gen.configservice.Action;
 import cds.gen.configservice.Layer;
@@ -48,29 +54,29 @@ public class ConfigServiceHandler implements EventHandler {
 
         /* Select from configuration entities */
         // Renderers
-        CqnSelect selectRenderers = Select.from(Renderers_.class).where(a -> a.ClientId().eq(filterClientId));
+        CqnSelect selectRenderers = Select.from(Renderers_.class);//.where(a -> a.ClientId().eq(filterClientId));
         
         List<Renderers> renderersResult = db.run(selectRenderers).listOf(Renderers.class);
         List<Renderer> renderersOutputList = new ArrayList<Renderer>();
 
         // Actions
         CqnSelect selectActions = Select.from(Actions_.class)
-                .columns(a -> a._all(), a -> a.BusinessObjectType().expand(), a -> a.ActionType().expand())
-                .where(a -> a.ClientId().eq(filterClientId));
+                .columns(a -> a._all(), a -> a.BusinessObjectType().expand(), a -> a.ActionType().expand());
+                //.where(a -> a.ClientId().eq(filterClientId));
         
         List<Actions> actionsResult = db.run(selectActions).listOf(Actions.class);
         List<Action> actionsOutputList = new ArrayList<Action>();
 
         // Layers
         CqnSelect selectLayers = Select.from(Layers_.class)
-                .columns(a -> a._all(), a -> a.ServiceType().expand(), a -> a.LayerType().expand())
-                .where(a -> a.ClientId().eq(filterClientId));
+                .columns(a -> a._all(), a -> a.ServiceType().expand(), a -> a.LayerType().expand());
+                //.where(a -> a.ClientId().eq(filterClientId));
 
         List<Layers> layersResult = db.run(selectLayers).listOf(Layers.class);
         List<Layer> layersOutputList = new ArrayList<Layer>();
 
         // BusinessObjectTypes
-        CqnSelect selectBusinessObjectTypes = Select.from(BusinessObjectTypes_.class).where(a -> a.ClientId().eq(filterClientId));
+        CqnSelect selectBusinessObjectTypes = Select.from(BusinessObjectTypes_.class);//.where(a -> a.ClientId().eq(filterClientId));
 
         List<BusinessObjectTypes> businessObjectTypesResult = db.run(selectBusinessObjectTypes).listOf(BusinessObjectTypes.class);
         List<BusinessObjectType> businessObjectTypesOutputList = new ArrayList<BusinessObjectType>();

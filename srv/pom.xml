@@ -14,6 +14,11 @@
 
 	<name>network-spatial-services</name>
 
+	<properties>
+        <!-- Network Spatial Service -->
+		<jts.version>1.18.1</jts.version>
+		<jackson.version>2.12.1</jackson.version>
+	</properties>
 	<!-- ACTUAL DEPENDENCIES -->
 	<dependencies>
 		<!-- CDS SPRING BOOT STARTER -->
@@ -47,6 +52,41 @@
 		<dependency>
 			<groupId>com.sap.cds</groupId>
 			<artifactId>cds-starter-cloudfoundry</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- Network Spatial Service -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>org.locationtech.jts</groupId>
+            <artifactId>jts-core</artifactId>
+            <version>${jts.version}</version>
+        </dependency>
+		<dependency>
+            <groupId>org.locationtech.jts.io</groupId>
+            <artifactId>jts-io-common</artifactId>
+            <version>${jts.version}</version>
+        </dependency>
+		<dependency>
+ 			<groupId>de.grundid.opendatalab</groupId>
+ 			<artifactId>geojson-jackson</artifactId>
+ 			<version>1.14</version>
 		</dependency>
 	</dependencies>
 
@@ -120,7 +160,8 @@
 						<configuration>
 							<commands>
 								<command>build</command>
-
+								<!-- OData v2 EDMX -->
+								<command>compile "${project.basedir}/ConfigServiceV2.cds" -s all -2 edmx-v2 -o "${project.basedir}/src/main/resources/edmx/v2"</command>
 								<command>deploy --to sqlite --dry &gt;
 									"${project.basedir}/src/main/resources/schema.sql"</command>
 							</commands>

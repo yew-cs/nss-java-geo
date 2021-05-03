@@ -53,22 +53,14 @@ annotate configService.Layers with @(
             Description    : {Value : Description},
 
         },
-        HeaderFacets                    : [{
-            $Type  : 'UI.ReferenceFacet',
-            Target : '@UI.FieldGroup#LayerInfo'
-        }],
         LineItem                        : {$value : [
             {Value : Name},
             {Value : LayerType_Code},
             {Value : ServiceType_Code},
             {Value : MinZoom}
         ]},
-        FieldGroup #LayerInfo           : {Data : [
-            {Value : LayerType_Code},
-            {Value : MinZoom}
-        ]},
         FieldGroup #GeneralInformation  : {Data : [
-
+            {Value : LayerType_Code},
             {Value : ServiceType_Code},
             {
                 $Type : 'UI.DataFieldWithUrl',
@@ -77,6 +69,7 @@ annotate configService.Layers with @(
             },
             {Value : OdataFieldNameGeometry},
             {Value : OdataFieldNameProperties},
+            {Value : MinZoom},
         ]},
         FieldGroup #ConfigurationDetail : {Data : [
 

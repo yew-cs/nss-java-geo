@@ -16,10 +16,6 @@ annotate configService.Actions with @(
             Description    : {Value : Description},
 
         },
-        HeaderFacets                   : [{
-                $Type  : 'UI.ReferenceFacet',
-                Target : '@UI.FieldGroup#ActionInfo'
-            }],
         LineItem                       : {$value : [
             {Value : Name},
             {Value : Description},
@@ -33,12 +29,9 @@ annotate configService.Actions with @(
             Target : '@UI.FieldGroup#GeneralInformation',
             Label  : '{i18n>GeneralInformation}'
         }],
-        FieldGroup #ActionInfo : {Data : [
+        FieldGroup #GeneralInformation : {Data : [
             {Value : ActionType_Code},
             {Value : BusinessObjectType_ID},
-
-        ]},
-        FieldGroup #GeneralInformation : {Data : [
             {Value : SemanticObject},
             {Value : Action},
             {

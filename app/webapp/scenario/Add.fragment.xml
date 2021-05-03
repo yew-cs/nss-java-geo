@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="AddChange471" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1"
+					emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Scenario Name">
+							<f:fields>
+								<Input value=""/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Description">
+							<f:fields>
+								<Input value=""/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Business Objects">
+							<f:fields>
+								<MultiInput id="multiInputBO" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Renderer">
+							<f:fields>
+								<Select forceSelection="false" selectedKey="">
+									<core:Item key="Renderer 1" text="Renderer 1"/>
+									<core:Item key="Renderer 2" text="Renderer 2"/>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Layers">
+							<f:fields>
+								<MultiInput id="multiInputLayers" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Actions">
+							<f:fields>
+								<MultiInput id="multiInputActions" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

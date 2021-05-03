@@ -1,4 +1,4 @@
 Id,ClientId,Name,Description,AccessToken,CloudFoundryDestination,Url,DefaultCenterLatitude,DefaultCenterLongitude,DefaultZoomLevel,DefaultStyle,JsonConfig
-cb6088a9-df2a-40e0-99c5-d4818b58be7c,76785e66-3032-4a27-b53f-4373dd135ce0,Visual Business,SAP Visual Business Renderer (old),,,https://renderer2.com,20,20,5,,
-770c602d-7630-4b06-969f-e94f835cd46a,76785e66-3032-4a27-b53f-4373dd135ce0,Mapbox,SAP Mapbox Renderer with Martin's token,pk.eyJ1IjoibWFydGluc3RlbnppZyIsImEiOiJjazV1amZpdGwwZG92M2xucDhvbWoxMTB2In0.JWYYOv7JzUpGA51DQLQK-A,,https://riz-inno-sbx-nss-map-control.cfapps.us10.hana.ondemand.com/nsc/map/,0,0,0,mapbox://styles/mapbox/dark-v10,"{""test"":""value1""} "
+cb6088a9-df2a-40e0-99c5-d4818b58be7c,76785e66-3032-4a27-b53f-4373dd135ce0,Visual Business,SAP Visual Business Renderer,,,https://renderer2.com,20,20,5,,
+770c602d-7630-4b06-969f-e94f835cd46a,76785e66-3032-4a27-b53f-4373dd135ce0,Mapbox,SAP Mapbox Renderer,pk.eyJ1IjoibWFydGluc3RlbnppZyIsImEiOiJjazV1amZpdGwwZG92M2xucDhvbWoxMTB2In0.JWYYOv7JzUpGA51DQLQK-A,,https://bncsbx-sbx-nss-map-control.cfapps.sap.hana.ondemand.com/nsc/map/,20.47,39.09,1,mapbox://styles/mapbox/dark-v10,"{""sample"":""value""} "
 150e8ca2-43e2-4674-8b20-0f7f94353e47,76785e66-3032-4a27-b53f-4373dd135ce0,Rizing Stingray, Rizing renderer (custom),,RizingDest,https://renderer2.com,0,0,0,,

@@ -1,7 +1,9 @@
 ---
 spring:
   web.resources.static-locations: "file:./app"
-
+cds:
+  odata-v2.endpoint.path: "/odata/v2"
+  odata-v4.endpoint.path: "/odata/v4"
 ---
 spring:
   config.activate.on-profile: default

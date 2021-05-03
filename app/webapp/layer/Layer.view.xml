@@ -1,0 +1,39 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic" height="100%" controllerName="com.sap.nss.nsaa.layer.Layer" displayBlock="true">
+
+	<SplitContainer>
+		<masterPages>
+			<Page id="master" title="Layers" icon="sap-icon://action" class="sapUiStdPage">
+				<customHeader>
+					<Bar>
+						<contentLeft>
+							<Text text="Layers"/>
+						</contentLeft>
+						<contentRight>
+							<Button id="add" text="Add" press="handleEditPress"/>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<List mode="Delete" items="{/Layers}">
+						<items>
+							<StandardListItem title="{Name}" type="Inactive" description="{Description}"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+		<detailPages>
+			<Page id="page" showHeader="true">
+				<customHeader>
+					<Bar>
+						<contentRight>
+							<Button id="edit" text="Edit" press="handleEditPress"/>
+							<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress"/>
+							<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress"/>
+						</contentRight>
+					</Bar>
+				</customHeader>
+			</Page>
+		</detailPages>
+	</SplitContainer>
+</mvc:View>

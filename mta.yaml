@@ -10,6 +10,7 @@ build-parameters:
       commands:
         - npm install --production
         - npx -p @sap/cds-dk cds build --production
+
 modules:
   - name: nss-map-control
     type: nodejs
@@ -22,28 +23,30 @@ modules:
         public: false
         properties:
           url: ${default-url}
-  - name: network-spatial-services-srv
+
+  - name: nss-service
     type: java
     path: srv
     properties:
       SPRING_PROFILES_ACTIVE: cloud
     requires:
-      - name: network-spatial-services-db
+      - name: nss-hdi-container
       - name: nss-uaa
     provides:
-      - name: srv
+      - name: nss-service-api
         properties:
-          url: ${default-url}
+          srv-url: ${default-url}
     build-parameters:
       build-result: target/*-exec.[wj]ar
       builder: custom
       commands:
         - mvn clean package
+
   # - name: nss-hdi-deployer
   #   type: hdb
   #   path: db
   #   requires:
-  #     - name: network-spatial-services-db
+  #     - name: nss-hdi-container
   #       properties:
   #         TARGET_CONTAINER: ~{hdi-service-name}
   #     - name: cross-container-service-1
@@ -53,27 +56,29 @@ modules:
   #         service: ~{the-service-name}
   #   parameters:
   #     buildpack: nodejs_buildpack
-# --------------------- APPROUTER MODULE ---------------------
+
+  # --------------------- APPROUTER MODULE ---------------------
   - name: nss-approuter
-# ------------------------------------------------------------
+    # ------------------------------------------------------------
     type: nodejs
     path: app
     parameters:
       memory: 256M
       disk-quota: 512M
     requires:
-    - name: srv
-      group: destinations
-      properties:
-        name: backend
-        url: ~{url}
-        forwardAuthToken: true
-        strictSSL: true
-    - name: nss-uaa
+      - name: nss-service-api
+        group: destinations
+        properties:
+          name: backend
+          url: ~{srv-url}
+          forwardAuthToken: true
+          strictSSL: true
+      - name: nss-uaa
     provides:
       - name: app
         properties:
           url: '${default-url}'
+
   - name: nss-destination-content
     type: com.sap.application.content
     requires:
@@ -98,8 +103,9 @@ modules:
           existing_destinations_policy: ignore
     build-parameters:
       no-source: true
+
 resources:
-  - name: network-spatial-services-db
+  - name: nss-hdi-container
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
@@ -108,6 +114,7 @@ resources:
         database_id: 6867e4a3-615f-4fa9-b0ce-1d3f5aae5225
     properties:
       hdi-service-name: ${service-name}
+
   - name: nss-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
@@ -116,17 +123,20 @@ resources:
         version: 1.0.0
       service: destination
       service-plan: lite
+
   - name: nss-html5-app-host
     type: org.cloudfoundry.existing-service
+
   - name: nss-uaa
     type: org.cloudfoundry.managed-service
     parameters:
       path: ./xs-security.json
       service: xsuaa
       service-plan: application
+
   - name: cross-container-service-1
     type: org.cloudfoundry.existing-service
     parameters:
-      service-name: network-spatial-services-db
+      service-name: nss-hdi-container
     properties:
       the-service-name: ${service-name}
