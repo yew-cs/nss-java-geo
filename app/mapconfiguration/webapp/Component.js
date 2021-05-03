@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "com/sap/nss/nsaa/mapconfiguration/model/models"
-], function (UIComponent, Device, models) {
+    "com/sap/nss/nsaa/mapconfiguration/model/models",
+    "com/sap/nss/nsaa/mapconfiguration/ListSelector"
+], function (UIComponent, Device, models, ListSelector) {
     "use strict";
 
     return UIComponent.extend("com.sap.nss.nsaa.mapconfiguration.Component", {
@@ -20,6 +21,11 @@ sap.ui.define([
 		 * @override
 		 */
         init: function () {
+            this.oScenarioListSelector = new ListSelector();
+
+            // set the device model
+			this.setModel(models.createDeviceModel(), "device");
+
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 

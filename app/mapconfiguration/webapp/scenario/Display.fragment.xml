@@ -10,7 +10,7 @@
 					<f:formElements>
 						<f:FormElement label="Scenario Name">
 							<f:fields>
-								<Text text="{ScenarioName}"/>
+								<Text text="{Name}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Description">
@@ -20,22 +20,22 @@
 						</f:FormElement>
 						<f:FormElement label="Business Objects">
 							<f:fields>
-								<Text text="{BusinessObjects}"/>
+								<Text text=""/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Renderer">
 							<f:fields>
-								<Text text="{Renderer}"/>
+								<Text text="{ToRenderer_ID}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Layers">
 							<f:fields>
-								<Text text="{Layers}"/>
+								<Text text=""/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Actions">
 							<f:fields>
-								<Text text="{Actions}"/>
+								<Text text=""/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
