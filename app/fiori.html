@@ -57,13 +57,19 @@
     </script>
 
     <script src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
-    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout" data-sap-ui-compatVersion="edge" data-sap-ui-theme="sap_fiori_3" data-sap-ui-frameOptions="allow"></script>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout" data-sap-ui-compatVersion="edge"
+        data-sap-ui-theme="sap_fiori_3" data-sap-ui-frameOptions="allow"></script>
     <script>
         sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt("content"))
     </script>
 
 </head>
 
-<body class="sapUiBody" id="content"></body>
+<body class="sapUiBody sapUiSizeCozy" id="content">
+    <div data-sap-ui-component data-name="com.sap.nss.nsaa" data-height="100%" data-id="container"
+        data-settings='{"id" : "com.sap.nss.nsaa"}' style="height: 100%">
+    </div>
+</body>
 
 </html>

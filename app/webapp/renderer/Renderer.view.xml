@@ -1,38 +1,117 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" height="100%" controllerName="com.sap.nss.nsaa.renderer.Renderer" displayBlock="true">
+<mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="com.sap.nss.nsaa.renderer.Renderer" xmlns:semantic="sap.m.semantic" displayBlock="true">
 	<SplitContainer>
 		<masterPages>
-			<Page id="master" title="Renderers" icon="sap-icon://action" class="sapUiStdPage">
-				<customHeader>
-					<Bar>
-						<contentLeft>
-							<Text text="Renderers"/>
-						</contentLeft>
-						<contentRight>
-							<Button id="add" text="Add" press="handleEditPress"/>
-						</contentRight>
+			<semantic:MasterPage id="page" title="Renderer" showNavButton="false">
+				<semantic:subHeader>
+					<Bar id="headerBar">
+						<contentMiddle>
+							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
+								search="onSearch"></SearchField>
+						</contentMiddle>
 					</Bar>
-				</customHeader>
-				<content>
-					<List mode="Delete" items="{/Renderers}">
+				</semantic:subHeader>
+				<semantic:content>
+					<PullToRefresh id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh"/>
+					<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+					<List id="list" items="{ path: '/Renderers', sorter: { path: 'Name', descending: false } }" busyIndicatorDelay="{masterView>/delay}"
+						noDataText="{masterView>/noDataText}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true"
+						growingScrollToLoad="true" updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 						<items>
-							<StandardListItem title="{Name}" type="Inactive" description="{Description}"/>
+							<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{Name}"></ObjectListItem>
 						</items>
 					</List>
-				</content>
-			</Page>
+				</semantic:content>
+				<semantic:addAction>
+					<semantic:AddAction id="addButton" enabled="{appView>/addEnabled}" press="onAdd"/>
+				</semantic:addAction>
+			</semantic:MasterPage>
 		</masterPages>
 		<detailPages>
-			<Page id="page" showHeader="true">
-				<customHeader>
-					<Bar>
-						<contentRight>
-							<Button id="edit" text="Edit" press="handleEditPress"/>
-							<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress"/>
-							<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress"/>
-						</contentRight>
-					</Bar>
-				</customHeader>
-			</Page>
+			<semantic:DetailPage id="detailsPage" showNavButton="{device>/system/phone}" title="{viewModel>/viewTitle}" busy="{detailView>/busy}"
+				busyIndicatorDelay="{detailView>/delay}">
+				<semantic:content>
+					<f:Form id="FormDisplay471" editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1"
+								emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Renderer Name">
+										<f:fields>
+											<Input value="{Name}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Description">
+										<f:fields>
+											<Input value="{Description}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="AccessToken">
+										<f:fields>
+											<Input value="{AccessToken}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="CloudFoundryDestination">
+										<f:fields>
+											<Input value="{CloudFoundryDestination}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="OdataFieldNameProperties">
+										<f:fields>
+											<Input value="{OdataFieldNameProperties}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Url">
+										<f:fields>
+											<Input value="{Url}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="DefaultCenterLatitude">
+										<f:fields>
+											<Input value="{DefaultCenterLatitude}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="DefaultCenterLongitude">
+										<f:fields>
+											<Input value="{DefaultCenterLongitude}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="DefaultZoomLevel">
+										<f:fields>
+											<Input value="{DefaultZoomLevel}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="DefaultStyle">
+										<f:fields>
+											<Input value="{DefaultStyle}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="JsonConfig">
+										<f:fields>
+											<Input value="{JsonConfig}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</semantic:content>
+				<semantic:editAction>
+					<semantic:EditAction id="edit" press="onEdit" visible="{= ${viewModel>/mode} === 'display' ? true : false}"/>
+				</semantic:editAction>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="deleteButton" press="onDelete" text="Delete" visible="{= ${viewModel>/mode} === 'display' ? true : false}"/>
+				</semantic:customFooterContent>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="saveButton" press="onSave" text="Save" visible="{= ${viewModel>/mode} === 'display' ? false : true}" />
+				</semantic:customFooterContent>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="cancelButton" press="onCancel" text="Cancel" visible="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+				</semantic:customFooterContent>
+			</semantic:DetailPage>
 		</detailPages>
 	</SplitContainer>
 </mvc:View>

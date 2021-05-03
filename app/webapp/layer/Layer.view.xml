@@ -1,39 +1,136 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic" height="100%" controllerName="com.sap.nss.nsaa.layer.Layer" displayBlock="true">
-
+<mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="com.sap.nss.nsaa.layer.Layer" xmlns:semantic="sap.m.semantic" displayBlock="true">
 	<SplitContainer>
 		<masterPages>
-			<Page id="master" title="Layers" icon="sap-icon://action" class="sapUiStdPage">
-				<customHeader>
-					<Bar>
-						<contentLeft>
-							<Text text="Layers"/>
-						</contentLeft>
-						<contentRight>
-							<Button id="add" text="Add" press="handleEditPress"/>
-						</contentRight>
+			<semantic:MasterPage id="page" title="Layers" showNavButton="false">
+				<semantic:subHeader>
+					<Bar id="headerBar">
+						<contentMiddle>
+							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
+								search="onSearch"></SearchField>
+						</contentMiddle>
 					</Bar>
-				</customHeader>
-				<content>
-					<List mode="Delete" items="{/Layers}">
+				</semantic:subHeader>
+				<semantic:content>
+					<PullToRefresh id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh"/>
+					<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+					<List id="list" items="{ path: '/Layers', sorter: { path: 'Name', descending: false } }" busyIndicatorDelay="{masterView>/delay}"
+						noDataText="{masterView>/noDataText}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true"
+						growingScrollToLoad="true" updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 						<items>
-							<StandardListItem title="{Name}" type="Inactive" description="{Description}"/>
+							<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{Name}"></ObjectListItem>
 						</items>
 					</List>
-				</content>
-			</Page>
+				</semantic:content>
+				<semantic:addAction>
+					<semantic:AddAction id="addButton" enabled="{appView>/addEnabled}" press="onAdd"/>
+				</semantic:addAction>
+			</semantic:MasterPage>
 		</masterPages>
 		<detailPages>
-			<Page id="page" showHeader="true">
-				<customHeader>
-					<Bar>
-						<contentRight>
-							<Button id="edit" text="Edit" press="handleEditPress"/>
-							<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress"/>
-							<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress"/>
-						</contentRight>
-					</Bar>
-				</customHeader>
-			</Page>
+			<semantic:DetailPage id="detailsPage" showNavButton="{device>/system/phone}" title="{viewModel>/viewTitle}" busy="{detailView>/busy}"
+				busyIndicatorDelay="{detailView>/delay}">
+				<semantic:content>
+					<f:Form id="FormDisplay471" editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1"
+								emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Layer Name">
+										<f:fields>
+											<Input value="{Name}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Description">
+										<f:fields>
+											<Input value="{Description}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Service Type">
+										<f:fields>
+											<Select forceSelection="false" enabled="{= ${viewModel>/mode} === 'display' ? false : true}" selectedKey="" items="{path: '/ServiceTypes', sorter: { path: 'Name' }}">
+												<core:Item key="{Code}" text="{Name}"/>
+											</Select>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="ServiceUrl">
+										<f:fields>
+											<Input value="{ServiceUrl}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="OdataFieldNameGeometry">
+										<f:fields>
+											<Input value="{OdataFieldNameGeometry}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="OdataFieldNameProperties">
+										<f:fields>
+											<Input value="{OdataFieldNameProperties}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>                                  
+									<f:FormElement label="Layer Type">
+										<f:fields>
+											<Select forceSelection="false" enabled="{= ${viewModel>/mode} === 'display' ? false : true}" selectedKey="" items="{path: '/LayerTypes', sorter: { path: 'Name' }}">
+												<core:Item key="{Code}" text="{Name}"/>
+											</Select>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="MinZoom">
+										<f:fields>
+											<Input value="{MinZoom}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="LayoutJson">
+										<f:fields>
+											<Input value="{LayoutJson}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="PaintJson">
+										<f:fields>
+											<Input value="{PaintJson}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="MarkerUrl">
+										<f:fields>
+											<Input value="{MarkerUrl}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="MarkerFallback">
+										<f:fields>
+											<Input value="{MarkerFallback}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="Attribution">
+										<f:fields>
+											<Input value="{Attribution}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+                                    <f:FormElement label="JsonConfig">
+										<f:fields>
+											<Input value="{JsonConfig}" enabled="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</semantic:content>
+				<semantic:editAction>
+					<semantic:EditAction id="edit" press="onEdit" visible="{= ${viewModel>/mode} === 'display' ? true : false}"/>
+				</semantic:editAction>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="deleteButton" press="onDelete" text="Delete" visible="{= ${viewModel>/mode} === 'display' ? true : false}"/>
+				</semantic:customFooterContent>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="saveButton" press="onSave" text="Save" visible="{= ${viewModel>/mode} === 'display' ? false : true}" />
+				</semantic:customFooterContent>
+				<semantic:customFooterContent>
+					<Button enabled="true" id="cancelButton" press="onCancel" text="Cancel" visible="{= ${viewModel>/mode} === 'display' ? false : true}"/>
+				</semantic:customFooterContent>
+			</semantic:DetailPage>
 		</detailPages>
 	</SplitContainer>
 </mvc:View>

@@ -7,7 +7,7 @@
 			<IconTabFilter text="Renderer" key="renderer">
 				<mvc:XMLView viewName="com.sap.nss.nsaa.renderer.Renderer"/>
 			</IconTabFilter>
-			<IconTabFilter text="BusinessObjects" key="businessobject">
+			<IconTabFilter text="Business Objects" key="businessobject">
 				<mvc:XMLView viewName="com.sap.nss.nsaa.businessobject.BusinessObjects"/>
 			</IconTabFilter>
 			<IconTabFilter text="Layers" key="layer">
